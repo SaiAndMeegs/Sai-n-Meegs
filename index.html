@@ -1,28 +1,97 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <link rel="manifest" href="”manifest.json”" crossorigin="use-credentials" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="index.css" />
-    <title>Sai n' Meegs</title>
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Array.from(document.getElementsByClassName('image')).forEach(image => {
+                console.log('hi!');
+                pixelateImage(image, 4);
+            })
+        })
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-  </head>
+        function pixelateImage(inputImage, pixelSize) {
+            const canvas = document.createElement('canvas');
+            canvas.width = inputImage.width;
+            canvas.height = inputImage.height;
 
-  <body>
-    <header>
-      <div class="header-title">Sai n' Meegs</div>
-    </header>
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(inputImage, 0, 0, canvas.width, canvas.height);
 
-    <a href="https://www.study-spot.com" target="_blank"
-      >https://study-spot.com</a
-    >
-    <br />
-    <a href="">https://ytwithpeople.com</a>
-  </body>
+            const pixelatedCanvas = document.createElement('canvas');
+            pixelatedCanvas.width = inputImage.width;
+            pixelatedCanvas.height = inputImage.height;
+
+            const pixelatedCtx = pixelatedCanvas.getContext('2d');
+            pixelatedCtx.imageSmoothingEnabled = false;
+
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+
+            for (let y = 0; y < canvas.height - pixelSize; y += pixelSize) {
+                for (let x = 0; x < canvas.width - pixelSize; x += pixelSize) {
+                    const pixelIndex = (y * canvas.width + x) * 4;
+
+                    const red = data[pixelIndex];
+                    const green = data[pixelIndex + 1];
+                    const blue = data[pixelIndex + 2];
+                    const alpha = data[pixelIndex + 3];
+
+                    pixelatedCtx.fillStyle = `rgba(${red},${green},${blue},${alpha})`;
+                    pixelatedCtx.fillRect(x, y, pixelSize, pixelSize);
+                }
+            }
+
+            const pixelatedImage = new Image();
+            pixelatedImage.src = pixelatedCanvas.toDataURL();
+
+            inputImage.src = pixelatedImage.src; // Update the source of the original image element
+        }
+
+
+
+
+
+    </script>
+</head>
+<body>
+    <div class="title">
+        <div class="content">
+            <a href="https://ssompally.com" target="_blank" class="sai">Sai</a>
+            <div class="amp">&</div>
+            <a href="https://msandlerespi.github.io" target="_blank" class="meegs">Miguel</a>
+        </div>
+    </div>
+    <div class="mix">
+        <div class="page-wipe left"></div>
+        <div class="page-wipe right"></div>
+        <div class="page-wipe down"></div>
+    </div>
+    <div class="projects">
+        <a class="project" href="https://study-spot.com" style="background: rgb(228, 105, 105);">
+            <img class="image" src="spot_no_text_v2.png"></img>
+            <div class="name">Study Spot</div>
+        </a>
+        <a class="project" style="background: rgb(68, 101, 173);">
+            <!-- <div class="image"></div> -->
+            <div class="name"></div>
+        </a>
+
+        <!-- <a class="project" style="background: rgb(236, 204, 58);">
+            <div class="image"></div>
+            <div class="name"></div>
+        </a>
+        <a class="project" style="background: rgb(173, 63, 164);">
+            <div class="image"></div>
+            <div class="name"></div>
+        </a>
+        <a class="project" style="background: rgb(62, 190, 84);">
+            <div class="image"></div>
+            <div class="name"></div>
+        </a>  -->
+    </div>
+</body>
 </html>
