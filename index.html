@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sai n' Meegs</title>
+    <title>Document</title>
     <link href="style.css" rel="stylesheet">
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             Array.from(document.getElementsByClassName('image')).forEach(image => {
-                console.log('hi!');
-                pixelateImage(image, 4);
+                pixelation = Math.ceil(window.innerWidth / 300);
+                pixelateImage(image, pixelation);
             })
         })
 
@@ -61,8 +61,8 @@
     <div class="title">
         <div class="content">
             <a href="https://ssompally.com" target="_blank" class="sai">Sai</a>
-            <div class="amp">n'</div>
-            <a href="https://msandlerespi.github.io" target="_blank" class="meegs">Meegs</a>
+            <div class="amp">&</div>
+            <a href="https://msandlerespi.github.io" target="_blank" class="meegs"><span class="m-red">M</span><span class="m-orange">i</span><span class="m-yellow">g</span><span class="m-green">u</span><span class="m-blue">e</span><span class="m-violet">l</span></a>
         </div>
     </div>
     <div class="mix">
@@ -71,31 +71,26 @@
         <div class="page-wipe down"></div>
     </div>
     <div class="projects">
-        <a class="project" href="https://www.study-spot.com" target="_blank" style="background: rgb(228, 105, 105);">
-            <img class="image" src="spot_no_text_v2.png"></img>
+        <a class="project" href="https://study-spot.com" style="background: rgb(228, 105, 105);">
+            <img class="image" src="spot no text v2.png"></img>
             <div class="name">Study Spot</div>
         </a>
-        <a class="project" href="https://youtube-mania-cv2l.vercel.app/" target="_blank" style="background: rgb(68, 101, 173);">
+        <a class="project" style="background: rgb(19, 28, 49);">
+            <img class="image" src="ytwpAsset 3@2x.png"></img>
+            <div class="name">Youtube With People</div>
+        </a>
+        <a class="project" style="background: rgb(236, 204, 58);">
             <!-- <div class="image"></div> -->
             <div class="name"></div>
         </a>
-
-        <a class="project" style="background: rgb(236, 204, 58);">
-            <div class="image"></div>
-            <div class="name"></div>
-        </a>
         <a class="project" style="background: rgb(173, 63, 164);">
-            <div class="image"></div>
+            <!-- <div class="image"></div> -->
             <div class="name"></div>
         </a>
         <a class="project" style="background: rgb(62, 190, 84);">
-            <div class="image"></div>
+            <!-- <div class="image"></div> -->
             <div class="name"></div>
-        </a> 
-        <a class="project" style="background: rgb(12, 166, 177);">
-            <div class="image"></div>
-            <div class="name"></div>
-        </a> 
+        </a>
     </div>
 </body>
 </html>
